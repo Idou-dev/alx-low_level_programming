@@ -13,7 +13,7 @@ char *_strdup(char *str)
 {
 	int l = 0, i;
 	char *s;
-	
+
 	if (str == NULL)
 		return (NULL);
 	while (str[l] != '\0')
