@@ -30,24 +30,19 @@ char *str_concat(char *s1, char *s2)
 	char *s;
 	unsigned int l1, l2, i;
 
-	if (s1 == NULL && s2 == NULL)
-	{
-		s = '\0';
-	}
+	if (s1 == NULL)
+		s1 = "";
+	if (s2 == NULL)
+		s2 = "";
 	l1 = _strlen(s1);
 	l2 = _strlen(s2);
 	s = malloc(sizeof(char) * (l1 + l2) + 1);
 	if (s == NULL)
-	{
 		return (NULL);
-	}
 	for (i = 0; i < l1; i++)
-	{
 		s[i] = s1[i];
-	}
 	for (i = 0; i <= l2; i++)
-	{
 		s[l1 + i] = s2[i];
-	}
+	s[l1 + l2] = '\0';
 	return (s);
 }
