@@ -2,6 +2,12 @@
 #include <stdlib.h>
 #include <string.h>
 
+/**
+ * _strlen - returns the length of str
+ * @str: a string
+ * Return: the length of str
+ */
+
 int _strlen(char *str)
 {
 	int len = 0;
@@ -10,6 +16,13 @@ int _strlen(char *str)
 		len++;
 	return (len);
 }
+
+/**
+ * add_node_end - adds a new node at the end of a list_t list
+ * @head: pointer to pointer to struct
+ * @str: a string to be duplicated
+ * Return: address of new node or null if it fails
+ */
 
 list_t *add_node_end(list_t **head, const char *str)
 {
