@@ -23,7 +23,7 @@ int _strlen(const char *s)
 
 unsigned int binary_to_uint(const char *b)
 {
-	int i , l, k = 1, n = 0;
+	int i, l, k = 1, n = 0;
 
 	if (b == NULL)
 		return (0);
