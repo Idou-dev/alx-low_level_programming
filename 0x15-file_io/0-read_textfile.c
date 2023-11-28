@@ -13,10 +13,13 @@ ssize_t read_textfile(const char *filename, size_t letters)
 {
 	int w, o;
 
-	if (filename == NULL)
+	if (filename == NULL || letters == '\0')
 		return (0);
-	o = open(filename, O_CREAT);
+	o = open(filename, O_RDONLY);
 	if (o == -1)
+		return (0);
+	w = read(o, &filename, letters);
+	if (w == -1)
 		return (0);
 	w = write(1, filename, letters);
 	if (w == -1)
