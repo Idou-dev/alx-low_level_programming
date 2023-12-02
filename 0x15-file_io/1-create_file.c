@@ -4,7 +4,6 @@
  * _strlen - returns a length of a string
  * @s: the string
  * Return: the length of the string
- */
 
 int _strlen(char *s)
 {
@@ -13,7 +12,7 @@ int _strlen(char *s)
 	while (s[l] != '\0')
 		l++;
 	return (l);
-}
+}*/
 
 /**
  * create_file - creates a file
@@ -34,7 +33,7 @@ int create_file(const char *filename, char *text_content)
 		return (-1);
 	if (!text_content)
 		text_content = "";
-	nlet = _strlen(text_content);
+	for (nlet = 0; text_content[nlet]; nlet++);
 	w = write(fd, text_content, nlet);
 	if (w == -1)
 		return (-1);
