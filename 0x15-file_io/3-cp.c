@@ -34,7 +34,7 @@ void check_stat(int n, int fd, char *s)
 
 int main(int ac, char **av)
 {
-	int fd, fd1, w, n_read = 1024;
+	int fd, fd1, w, n_read = 1024, fd_close, fd1_close;
 	char buf[READ_BUF_SIZE];
 	unsigned int mode = S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH;
 
@@ -46,23 +46,23 @@ int main(int ac, char **av)
 	fd1 = open(av[1], O_WRONLY);
 	if (fd1 == -1)
 		check_stat(1, -1, av[1]);
-	fd = open(av[2], O_CREAT | O_WRONLY | O_TRUNC, mode);
+	fd = open(av[2], O_WRONLY | O_CREAT | O_TRUNC, mode);
 	if (fd == -1)
 		check_stat(2, -1, av[2]);
 	while (n_read == 1024)
 	{
 		n_read = read(fd1, buf, sizeof(buf));
-		if (w == -1)
+		if (n_read == -1)
 			check_stat(1, -1, av[1]);
 		w = write(fd, buf, n_read);
 		if (w == -1)
 			check_stat(2, -1, av[2]);
 	}
-	w = close(fd1);
-	if (w == -1)
+	fd1_close = close(fd1);
+	if (fd1_close == -1)
 		check_stat(3, fd1, av[1]);
-	w = close(fd);
-	if (w == -1)
+	fd_close = close(fd);
+	if (fd_close == -1)
 		check_stat(3, fd, av[2]);
 	return (0);
 }
