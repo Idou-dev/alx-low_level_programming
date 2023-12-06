@@ -36,6 +36,7 @@ int main(int ac, char **av)
 {
 	int fd, fd1, w, n_read = 1024;
 	char buf[READ_BUF_SIZE];
+	unsigned int mode = S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH;
 
 	if (ac != 3)
 	{
@@ -45,7 +46,7 @@ int main(int ac, char **av)
 	fd1 = open(av[1], O_WRONLY);
 	if (fd1 == -1)
 		check_stat(1, -1, av[1]);
-	fd = open(av[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
+	fd = open(av[2], O_CREAT | O_WRONLY | O_TRUNC, mode);
 	if (fd == -1)
 		check_stat(2, -1, av[2]);
 	while (n_read == 1024)
