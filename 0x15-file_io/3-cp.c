@@ -32,7 +32,7 @@ void check_stat(int n, int fd, char *s)
  * Return: 0 on success
  */
 
-int main(int ac, char **av)
+int main(int ac, char *av[1])
 {
 	int fd, fd1, w, n_read = 1024, fd_close, fd1_close;
 	char buf[READ_BUF_SIZE];
@@ -43,7 +43,7 @@ int main(int ac, char **av)
 		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
 		exit(97);
 	}
-	fd1 = open(av[1], O_WRONLY);
+	fd1 = open(av[1], O_RDONLY);
 	if (fd1 == -1)
 		check_stat(1, -1, av[1]);
 	fd = open(av[2], O_WRONLY | O_CREAT | O_TRUNC, mode);
